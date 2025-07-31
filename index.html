@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HengOngBet Landing Page - CTA增加缩放特效</title>
+    <title>HengOngBet Landing Page - 调整移动端CTA位置</title>
     
     <!-- Meta Pixel Code -->
     <script>
@@ -77,7 +77,7 @@
                 inset 0 -2px 4px rgba(0, 0, 0, 0.2);
             border: 3px solid #ffd700;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            animation: pulse-glow 2s ease-in-out infinite, scale-pulse 1.5s ease-in-out infinite;
+            animation: pulse-glow 2s ease-in-out infinite, breathe-scale 3s ease-in-out infinite;
         }
 
         .premium-cta::before {
@@ -149,12 +149,12 @@
             }
         }
 
-        @keyframes scale-pulse {
+        @keyframes breathe-scale {
             0%, 100% {
-                transform: translateX(-50%) scale(1);
+                transform: translateX(-50%) scale(1.0);
             }
             50% {
-                transform: translateX(-50%) scale(1.08);
+                transform: translateX(-50%) scale(1.05);
             }
         }
 
@@ -175,7 +175,7 @@
             .premium-cta {
                 width: 350px;
                 height: 70px;
-                bottom: 20%;
+                bottom: 35%;
             }
             .cta-text {
                 font-size: 18px;
@@ -189,7 +189,7 @@
             .premium-cta {
                 width: 300px;
                 height: 65px;
-                bottom: 15%;
+                bottom: 30%;
             }
             .cta-text {
                 font-size: 16px;
