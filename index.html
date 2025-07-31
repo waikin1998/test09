@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HengOngBet Landing Page - 添加Meta Pixel</title>
+    <title>HengOngBet Landing Page - CTA增加缩放特效</title>
     
     <!-- Meta Pixel Code -->
     <script>
@@ -23,8 +23,16 @@
     /></noscript>
     <!-- End Meta Pixel Code -->
     
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
         body {
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #000;
@@ -47,66 +55,160 @@
             max-width: 100%;
         }
 
-        .cta-button {
+        .premium-cta {
             position: absolute;
-            bottom: 0.5%;
+            bottom: 22%;
             left: 50%;
             transform: translateX(-50%);
             cursor: pointer;
-            max-width: 350px;
-            width: 25%;
-            min-width: 220px;
-            animation: pulse 1.5s ease-in-out infinite;
-            transition: transform 0.3s ease;
-            filter: drop-shadow(0 8px 20px rgba(128, 0, 128, 0.3));
-            display: block;
+            width: 400px;
+            height: 80px;
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 25%, #ffd700 50%, #ffaa00 75%, #ff8c00 100%);
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 8px 32px rgba(255, 107, 53, 0.4),
+                0 4px 16px rgba(247, 147, 30, 0.3),
+                inset 0 2px 4px rgba(255, 255, 255, 0.3),
+                inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+            border: 3px solid #ffd700;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: pulse-glow 2s ease-in-out infinite, scale-pulse 1.5s ease-in-out infinite;
         }
 
-        .cta-button img {
+        .premium-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
             width: 100%;
-            height: auto;
-            display: block;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s;
         }
 
-        .cta-button:hover {
-            transform: translateX(-50%) scale(1.1) translateY(-5px);
-            filter: drop-shadow(0 12px 25px rgba(128, 0, 128, 0.5));
+        .premium-cta:hover::before {
+            left: 100%;
         }
 
-        @keyframes pulse {
+        .premium-cta:hover {
+            transform: translateX(-50%) translateY(-8px) scale(1.05);
+            box-shadow: 
+                0 16px 48px rgba(255, 107, 53, 0.6),
+                0 8px 24px rgba(247, 147, 30, 0.4),
+                inset 0 2px 6px rgba(255, 255, 255, 0.4),
+                inset 0 -2px 6px rgba(0, 0, 0, 0.3);
+            border-color: #fff;
+        }
+
+        .cta-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            z-index: 2;
+            position: relative;
+        }
+
+        .cta-text {
+            font-size: 20px;
+            font-weight: 800;
+            color: #fff;
+            text-shadow: 
+                2px 2px 4px rgba(0, 0, 0, 0.8),
+                0 0 8px rgba(255, 255, 255, 0.3);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .cta-icon {
+            font-size: 24px;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 
+                    0 8px 32px rgba(255, 107, 53, 0.4),
+                    0 4px 16px rgba(247, 147, 30, 0.3),
+                    inset 0 2px 4px rgba(255, 255, 255, 0.3),
+                    inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+            }
+            50% {
+                box-shadow: 
+                    0 12px 40px rgba(255, 107, 53, 0.6),
+                    0 6px 20px rgba(247, 147, 30, 0.4),
+                    inset 0 2px 4px rgba(255, 255, 255, 0.4),
+                    inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+            }
+        }
+
+        @keyframes scale-pulse {
             0%, 100% {
                 transform: translateX(-50%) scale(1);
             }
             50% {
-                transform: translateX(-50%) scale(1.05);
+                transform: translateX(-50%) scale(1.08);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-4px);
+            }
+            60% {
+                transform: translateY(-2px);
             }
         }
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
-            .cta-button {
-                width: 35%;
-                min-width: 180px;
-                max-width: 250px;
-                bottom: 0.1%;
+            .premium-cta {
+                width: 350px;
+                height: 70px;
+                bottom: 20%;
+            }
+            .cta-text {
+                font-size: 18px;
+            }
+            .cta-icon {
+                font-size: 22px;
             }
         }
 
         @media (max-width: 480px) {
-            .cta-button {
-                width: 65%;
-                min-width: 180px;
-                max-width: 320px;
-                bottom: -1%;
+            .premium-cta {
+                width: 300px;
+                height: 65px;
+                bottom: 15%;
+            }
+            .cta-text {
+                font-size: 16px;
+            }
+            .cta-icon {
+                font-size: 20px;
             }
         }
     </style>
 </head>
 <body>
     <div class="image-container">
-        <img src="https://gensparkstorageprodwest.blob.core.windows.net/web-drive/33882dc6-d06d-468e-aa21-b8b5b6647042/348cc5c0-bb4c-4f0c-90db-720afcc2a463?se=2025-07-31T17%3A49%3A11Z&sp=r&sv=2025-05-05&sr=b&rscd=attachment%3B%20filename%3D%22correct_background.jpg%22&sig=bNtQiIrhOieGLrp4ASfbeZqh1ZybkwxF6J3PNbwX/4E%3D" alt="HengOngBet" class="background-image">
-        <a href="https://t.ly/HOBADS07" target="_blank" class="cta-button">
-            <img src="https://cdn1.genspark.ai/user-upload-image/gpt_image_generated/a56e6b00-fcc6-4c9b-bba9-6400f86252c8" alt="领取奖励">
+        <img src="https://page.gensparksite.com/v1/base64_upload/8f765d8125b627fb1d277897475a88c8" alt="HengOngBet" class="background-image">
+        <a href="https://t.ly/HOBADS07" target="_blank" class="premium-cta">
+            <div class="cta-content">
+                <i class="fas fa-gift cta-icon"></i>
+                <span class="cta-text">Claim Bonus Now</span>
+                <i class="fas fa-arrow-right cta-icon"></i>
+            </div>
         </a>
     </div>
 </body>
