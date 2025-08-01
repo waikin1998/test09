@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HengOngBet Landing Page - CTA移至底部</title>
+    <title>HengOngBet Landing Page - 修正CTA底部位置</title>
     
     <!-- Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
@@ -22,103 +22,68 @@
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #000;
-            min-height: 100vh;
             overflow-x: hidden;
+        }
+
+        /* Desktop Version - Fixed positioning */
+        .desktop-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000;
+        }
+
+        .desktop-background {
+            width: 100%;
+            height: 100vh;
+            object-fit: contain;
+            max-width: 100%;
+        }
+
+        .desktop-cta-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 10;
+            pointer-events: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Mobile Version - Scrollable */
+        .mobile-container {
+            display: none;
             position: relative;
+            min-height: 100vh;
+            background-color: #000;
         }
 
-        /* Desktop and tablet: fixed background with overlay CTA */
-        @media (min-width: 481px) {
-            .background-layer {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100vh;
-                z-index: 1;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                background-color: #000;
-            }
-
-            .background-image {
-                width: 100%;
-                height: 100vh;
-                object-fit: contain;
-                max-width: 100%;
-            }
-
-            .cta-layer {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100vh;
-                z-index: 10;
-                pointer-events: none;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-
-            .premium-cta {
-                position: absolute;
-                bottom: 8%;
-                left: 50%;
-                transform: translateX(-50%);
-                cursor: pointer;
-                pointer-events: all;
-            }
+        .mobile-background-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            background-color: #000;
         }
 
-        /* Mobile: scrollable background with CTA positioned on image */
-        @media (max-width: 480px) {
-            body {
-                overflow-y: auto;
-            }
-
-            .background-container {
-                position: relative;
-                width: 100%;
-                min-height: 100vh;
-                background-color: #000;
-                display: flex;
-                justify-content: center;
-                align-items: flex-start;
-            }
-
-            .background-image {
-                width: 100%;
-                height: auto;
-                min-height: 100vh;
-                object-fit: contain;
-                display: block;
-            }
-
-            .cta-layer {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                z-index: 10;
-                pointer-events: none;
-            }
-
-            .premium-cta {
-                position: absolute;
-                bottom: 8%;
-                left: 50%;
-                transform: translateX(-50%);
-                cursor: pointer;
-                pointer-events: all;
-            }
+        .mobile-background {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            display: block;
         }
 
         .premium-cta {
-            width: 400px;
-            height: 80px;
+            cursor: pointer;
+            pointer-events: all;
             background: linear-gradient(135deg, #ff6b35 0%, #f7931e 25%, #ffd700 50%, #ffaa00 75%, #ff8c00 100%);
             border-radius: 50px;
             display: flex;
@@ -135,6 +100,26 @@
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             animation: pulse-glow 2s ease-in-out infinite, breathe-scale 3s ease-in-out infinite;
             text-decoration: none !important;
+        }
+
+        /* Desktop CTA positioning */
+        .desktop-cta {
+            position: absolute;
+            bottom: 12%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 400px;
+            height: 80px;
+        }
+
+        /* Mobile CTA positioning - positioned relative to background image */
+        .mobile-cta {
+            position: absolute;
+            bottom: 8%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 65px;
         }
 
         .premium-cta::before {
@@ -173,7 +158,6 @@
         }
 
         .cta-text {
-            font-size: 20px;
             font-weight: 800;
             color: #fff;
             text-shadow: 
@@ -184,11 +168,26 @@
             text-decoration: none !important;
         }
 
+        .desktop-cta .cta-text {
+            font-size: 20px;
+        }
+
+        .mobile-cta .cta-text {
+            font-size: 16px;
+        }
+
         .cta-icon {
-            font-size: 24px;
             color: #fff;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
             animation: bounce 2s ease-in-out infinite;
+        }
+
+        .desktop-cta .cta-icon {
+            font-size: 24px;
+        }
+
+        .mobile-cta .cta-icon {
+            font-size: 20px;
         }
 
         @keyframes pulse-glow {
@@ -208,13 +207,38 @@
             }
         }
 
-        @keyframes breathe-scale {
+        .desktop-cta {
+            animation: pulse-glow 2s ease-in-out infinite, desktop-breathe 3s ease-in-out infinite;
+        }
+
+        .mobile-cta {
+            animation: pulse-glow 2s ease-in-out infinite, mobile-breathe 3s ease-in-out infinite;
+        }
+
+        @keyframes desktop-breathe {
             0%, 100% {
                 transform: translateX(-50%) scale(1);
             }
             50% {
                 transform: translateX(-50%) scale(1.05);
             }
+        }
+
+        @keyframes mobile-breathe {
+            0%, 100% {
+                transform: translateX(-50%) scale(1);
+            }
+            50% {
+                transform: translateX(-50%) scale(1.05);
+            }
+        }
+
+        .desktop-cta:hover {
+            transform: translateX(-50%) translateY(-8px) scale(1.05) !important;
+        }
+
+        .mobile-cta:hover {
+            transform: translateX(-50%) translateY(-8px) scale(1.05) !important;
         }
 
         @keyframes bounce {
@@ -229,43 +253,43 @@
             }
         }
 
-        /* Tablet adjustments */
-        @media (max-width: 768px) and (min-width: 481px) {
-            .premium-cta {
-                width: 350px;
-                height: 70px;
+        /* Responsive - show mobile version on small screens */
+        @media (max-width: 768px) {
+            .desktop-container,
+            .desktop-cta-layer {
+                display: none;
             }
-            .cta-text {
-                font-size: 18px;
-            }
-            .cta-icon {
-                font-size: 22px;
+            
+            .mobile-container {
+                display: block;
             }
         }
 
-        /* Mobile adjustments */
-        @media (max-width: 480px) {
-            .premium-cta {
-                width: 300px;
-                height: 65px;
+        /* Tablet adjustments */
+        @media (min-width: 481px) and (max-width: 768px) {
+            .mobile-cta {
+                width: 350px;
+                height: 70px;
             }
-            .cta-text {
-                font-size: 16px;
+            
+            .mobile-cta .cta-text {
+                font-size: 18px;
             }
-            .cta-icon {
-                font-size: 20px;
+            
+            .mobile-cta .cta-icon {
+                font-size: 22px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Desktop and Tablet Layout -->
-    <div class="background-layer">
-        <img src="https://page.gensparksite.com/v1/base64_upload/8f765d8125b627fb1d277897475a88c8" alt="HengOngBet Background" class="background-image">
+    <!-- Desktop Version -->
+    <div class="desktop-container">
+        <img src="https://page.gensparksite.com/v1/base64_upload/8f765d8125b627fb1d277897475a88c8" alt="HengOngBet Background" class="desktop-background">
     </div>
 
-    <div class="cta-layer">
-        <a href="https://hengongbet7.com" target="_blank" class="premium-cta">
+    <div class="desktop-cta-layer">
+        <a href="https://hengongbet7.com" target="_blank" class="premium-cta desktop-cta">
             <div class="cta-content">
                 <i class="fas fa-gift cta-icon"></i>
                 <span class="cta-text">Claim Bonus Now</span>
@@ -274,11 +298,11 @@
         </a>
     </div>
 
-    <!-- Mobile Layout -->
-    <div class="background-container">
-        <img src="https://page.gensparksite.com/v1/base64_upload/8f765d8125b627fb1d277897475a88c8" alt="HengOngBet Background" class="background-image">
-        <div class="cta-layer">
-            <a href="https://hengongbet7.com" target="_blank" class="premium-cta">
+    <!-- Mobile Version -->
+    <div class="mobile-container">
+        <div class="mobile-background-wrapper">
+            <img src="https://page.gensparksite.com/v1/base64_upload/8f765d8125b627fb1d277897475a88c8" alt="HengOngBet Background" class="mobile-background">
+            <a href="https://hengongbet7.com" target="_blank" class="premium-cta mobile-cta">
                 <div class="cta-content">
                     <i class="fas fa-gift cta-icon"></i>
                     <span class="cta-text">Claim Bonus Now</span>
