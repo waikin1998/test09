@@ -3,25 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HengOngBet Landing Page - CTA固定在背景图</title>
-    
-    <!-- Meta Pixel Code -->
-    <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1446794863131362');
-    fbq('track', 'PageView');
-    </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1446794863131362&ev=PageView&noscript=1"
-    /></noscript>
-    <!-- End Meta Pixel Code -->
+    <title>HengOngBet Landing Page - CTA居中保持原尺寸</title>
     
     <!-- Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
@@ -41,58 +23,117 @@
             font-family: 'Poppins', sans-serif;
             background-color: #000;
             min-height: 100vh;
-            position: relative;
+            overflow-x: hidden;
         }
 
-        /* Desktop and Tablet - Fixed Layout */
-        .background-layer {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            z-index: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #000;
+        /* Desktop version - fixed background and CTA */
+        @media (min-width: 769px) {
+            .background-layer {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                z-index: 1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: #000;
+            }
+
+            .background-image {
+                width: 100%;
+                height: 100vh;
+                object-fit: contain;
+                max-width: 100%;
+            }
+
+            .cta-layer {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                z-index: 10;
+                pointer-events: none;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .premium-cta {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 400px;
+                height: 80px;
+            }
         }
 
-        .background-image {
-            width: 100%;
-            height: 100vh;
-            object-fit: contain;
-            max-width: 100%;
+        /* Mobile version - scrollable background with CTA attached */
+        @media (max-width: 768px) {
+            body {
+                overflow-y: auto;
+            }
+
+            .background-layer {
+                position: relative;
+                width: 100%;
+                background-color: #000;
+                display: flex;
+                justify-content: center;
+                align-items: flex-start;
+                min-height: 150vh;
+            }
+
+            .background-image {
+                width: 100%;
+                height: auto;
+                min-height: 150vh;
+                object-fit: contain;
+                object-position: top center;
+            }
+
+            .cta-layer {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 10;
+                pointer-events: none;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .premium-cta {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 350px;
+                height: 70px;
+            }
         }
 
-        .cta-layer {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            z-index: 10;
-            pointer-events: none;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        @media (max-width: 480px) {
+            .premium-cta {
+                width: 300px;
+                height: 65px;
+            }
         }
 
+        /* CTA Styling */
         .premium-cta {
-            position: absolute;
-            top: 34%;
-            left: 11%;
-            transform: translateX(-50%);
             cursor: pointer;
             pointer-events: all;
-            width: 400px;
-            height: 80px;
             background: linear-gradient(135deg, #ff6b35 0%, #f7931e 25%, #ffd700 50%, #ffaa00 75%, #ff8c00 100%);
             border-radius: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
             overflow: hidden;
             box-shadow: 
                 0 8px 32px rgba(255, 107, 53, 0.4),
@@ -121,7 +162,7 @@
         }
 
         .premium-cta:hover {
-            transform: translateX(-50%) translateY(-8px) scale(1.05);
+            transform: translate(-50%, -50%) translateY(-8px) scale(1.05);
             box-shadow: 
                 0 16px 48px rgba(255, 107, 53, 0.6),
                 0 8px 24px rgba(247, 147, 30, 0.4),
@@ -159,6 +200,24 @@
             animation: bounce 2s ease-in-out infinite;
         }
 
+        @media (max-width: 768px) {
+            .cta-text {
+                font-size: 18px;
+            }
+            .cta-icon {
+                font-size: 22px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cta-text {
+                font-size: 16px;
+            }
+            .cta-icon {
+                font-size: 20px;
+            }
+        }
+
         @keyframes pulse-glow {
             0%, 100% {
                 box-shadow: 
@@ -178,10 +237,10 @@
 
         @keyframes breathe-scale {
             0%, 100% {
-                transform: translateX(-50%) scale(1);
+                transform: translate(-50%, -50%) scale(1);
             }
             50% {
-                transform: translateX(-50%) scale(1.05);
+                transform: translate(-50%, -50%) scale(1.05);
             }
         }
 
@@ -196,84 +255,6 @@
                 transform: translateY(-2px);
             }
         }
-
-        /* Mobile Scrollable Layout */
-        @media (max-width: 480px) {
-            body {
-                overflow-x: hidden;
-                overflow-y: auto;
-            }
-
-            .background-layer {
-                position: relative;
-                height: auto;
-                min-height: 150vh;
-            }
-
-            .background-image {
-                width: 100%;
-                height: auto;
-                object-fit: contain;
-                display: block;
-            }
-
-            .cta-layer {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                z-index: 10;
-                pointer-events: none;
-            }
-
-            .premium-cta {
-                position: absolute;
-                top: 32%;
-                left: 35.5%;
-                transform: translateX(-50%);
-                width: 300px;
-                height: 65px;
-                animation: pulse-glow 2s ease-in-out infinite;
-            }
-
-            .premium-cta:hover {
-                transform: translateX(-50%) translateY(-8px) scale(1.05);
-            }
-
-            .cta-text {
-                font-size: 16px;
-            }
-
-            .cta-icon {
-                font-size: 20px;
-            }
-
-            @keyframes breathe-scale {
-                0%, 100% {
-                    transform: translateX(-50%) scale(1);
-                }
-                50% {
-                    transform: translateX(-50%) scale(1.05);
-                }
-            }
-        }
-
-        /* Tablet adjustments */
-        @media (max-width: 768px) and (min-width: 481px) {
-            .premium-cta {
-                width: 350px;
-                height: 70px;
-                top: 38%;
-                left: 15%;
-            }
-            .cta-text {
-                font-size: 18px;
-            }
-            .cta-icon {
-                font-size: 22px;
-            }
-        }
     </style>
 </head>
 <body>
@@ -281,7 +262,7 @@
     <div class="background-layer">
         <img src="https://page.gensparksite.com/v1/base64_upload/8f765d8125b627fb1d277897475a88c8" alt="HengOngBet Background" class="background-image">
         
-        <!-- CTA Layer - Inside background for mobile -->
+        <!-- CTA Layer -->
         <div class="cta-layer">
             <a href="https://hengongbet7.com" target="_blank" class="premium-cta">
                 <div class="cta-content">
