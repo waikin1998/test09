@@ -1,17 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HengOngBet Landing Page - 完美平衡所有版本</title>
-    
-    <!-- Tailwind CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
-    
+    <title>YES2WIN</title>
     <style>
         * {
             margin: 0;
@@ -19,295 +11,237 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #000;
-            min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        /* Desktop and Tablet - Fixed Layout */
-        .desktop-layout {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
+        body, html {
             height: 100vh;
-            z-index: 1;
+            width: 100vw;
+            font-family: 'Arial', sans-serif;
+            background-color: #000;
             display: flex;
-            justify-content: center;
             align-items: center;
-            background-color: #000;
+            justify-content: center;
+            overflow: hidden;
         }
 
-        .desktop-background {
+        .background-container {
+            position: relative;
             width: 100%;
-            height: 100vh;
-            object-fit: contain;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .background-image {
             max-width: 100%;
-        }
-
-        .desktop-cta-layer {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            z-index: 10;
-            pointer-events: none;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* Mobile - Scrollable Layout */
-        .mobile-layout {
-            display: none;
-            position: relative;
-            min-height: 100vh;
-            background-color: #000;
-        }
-
-        .mobile-background-container {
-            position: relative;
-            width: 100%;
+            max-height: 100%;
+            width: auto;
             height: auto;
+            object-fit: contain;
         }
 
-        .mobile-background {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .mobile-cta-layer {
+        .cta-container {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            pointer-events: none;
-            z-index: 10;
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
         }
 
-        /* CTA Button Styles */
-        .premium-cta {
+        .cta-link {
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button {
+            position: relative;
+            padding: 0;
+            margin: 0;
+            background: none;
+            border: none;
             cursor: pointer;
-            pointer-events: all;
-            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 25%, #ffd700 50%, #ffaa00 75%, #ff8c00 100%);
-            border-radius: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-family: inherit;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        /* Layer 1 - 最外层金色边框 */
+        .layer-1 {
+            padding: 4px;
+            background: linear-gradient(45deg, #FFD700, #FFA500, #FFD700);
+            border-radius: 16px;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
             position: relative;
             overflow: hidden;
-            box-shadow: 
-                0 8px 32px rgba(255, 107, 53, 0.4),
-                0 4px 16px rgba(247, 147, 30, 0.3),
-                inset 0 2px 4px rgba(255, 255, 255, 0.3),
-                inset 0 -2px 4px rgba(0, 0, 0, 0.2);
-            border: 3px solid #ffd700;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            animation: pulse-glow 2s ease-in-out infinite, breathe-scale 3s ease-in-out infinite;
-            text-decoration: none !important;
         }
 
-        .premium-cta::before {
+        .layer-1::before {
             content: '';
             position: absolute;
             top: 0;
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            transition: left 0.5s;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s infinite;
         }
 
-        .premium-cta:hover::before {
-            left: 100%;
+        /* Layer 2 - 深色边框 */
+        .layer-2 {
+            padding: 6px;
+            background: linear-gradient(145deg, #2c2c2c, #1a1a1a);
+            border-radius: 12px;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
         }
 
-        .premium-cta:hover {
-            transform: translateY(-8px) scale(1.05);
+        /* Layer 3 - 金色金属边框 */
+        .layer-3 {
+            padding: 3px;
+            background: linear-gradient(145deg, #FFD700, #B8860B, #FFD700);
+            border-radius: 8px;
             box-shadow: 
-                0 16px 48px rgba(255, 107, 53, 0.6),
-                0 8px 24px rgba(247, 147, 30, 0.4),
-                inset 0 2px 6px rgba(255, 255, 255, 0.4),
-                inset 0 -2px 6px rgba(0, 0, 0, 0.3);
-            border-color: #fff;
-            text-decoration: none !important;
-        }
-
-        .cta-content {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            z-index: 2;
+                0 2px 8px rgba(255, 215, 0, 0.4),
+                inset 0 1px 2px rgba(255, 255, 255, 0.3);
             position: relative;
+            overflow: hidden;
         }
 
-        .cta-text {
-            font-weight: 800;
+        .layer-3::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.2), transparent);
+            border-radius: 8px 8px 0 0;
+        }
+
+        /* Layer 4 - 金色渐变背景 */
+        .layer-4 {
+            padding: 20px 30px;
+            background: linear-gradient(145deg, #FFD700, #FFA500, #FF8C00, #B8860B);
+            border-radius: 6px;
+            box-shadow: 
+                inset 0 2px 4px rgba(255, 255, 255, 0.3),
+                inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Layer 5 - 金属光泽效果 */
+        .layer-4::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.3) 0%, 
+                transparent 30%, 
+                transparent 70%, 
+                rgba(255, 255, 255, 0.1) 100%);
+            border-radius: 6px;
+        }
+
+        .layer-4::after {
+            content: '';
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            right: 60%;
+            height: 30%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), transparent);
+            border-radius: 50%;
+            filter: blur(1px);
+        }
+
+        .button-text {
+            position: relative;
+            z-index: 10;
+            font-size: 18px;
+            font-weight: bold;
             color: #fff;
             text-shadow: 
-                2px 2px 4px rgba(0, 0, 0, 0.8),
-                0 0 8px rgba(255, 255, 255, 0.3);
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            text-decoration: none !important;
+                0 1px 2px rgba(0, 0, 0, 0.5),
+                0 0 5px rgba(255, 215, 0, 0.3);
+            letter-spacing: 1px;
         }
 
-        .cta-icon {
-            color: #fff;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-            animation: bounce 2s ease-in-out infinite;
+        /* 悬停效果 */
+        .cta-link:hover .layer-1 {
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            transform: scale(1.02);
         }
 
-        /* Desktop CTA */
-        .desktop-cta {
-            position: absolute;
-            top: 85%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 400px;
-            height: 80px;
+        .cta-link:hover .layer-4 {
+            background: linear-gradient(145deg, #FFED4A, #FFD700, #FFA500, #FF8C00);
         }
 
-        .desktop-cta .cta-text {
-            font-size: 20px;
+        .cta-link:hover .button-text {
+            text-shadow: 
+                0 1px 2px rgba(0, 0, 0, 0.5),
+                0 0 10px rgba(255, 215, 0, 0.5);
         }
 
-        .desktop-cta .cta-icon {
-            font-size: 24px;
+        /* 点击效果 */
+        .cta-link:active .cta-button {
+            transform: scale(0.98);
         }
 
-        /* Mobile CTA */
-        .mobile-cta {
-            position: absolute;
-            top: 78%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 300px;
-            height: 65px;
+        /* 动画 */
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
         }
 
-        .mobile-cta .cta-text {
-            font-size: 16px;
-        }
-
-        .mobile-cta .cta-icon {
-            font-size: 20px;
-        }
-
-        @keyframes pulse-glow {
-            0%, 100% {
-                box-shadow: 
-                    0 8px 32px rgba(255, 107, 53, 0.4),
-                    0 4px 16px rgba(247, 147, 30, 0.3),
-                    inset 0 2px 4px rgba(255, 255, 255, 0.3),
-                    inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .cta-container {
+                bottom: 8%;
             }
-            50% {
-                box-shadow: 
-                    0 12px 40px rgba(255, 107, 53, 0.6),
-                    0 6px 20px rgba(247, 147, 30, 0.4),
-                    inset 0 2px 4px rgba(255, 255, 255, 0.4),
-                    inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+            
+            .layer-4 {
+                padding: 16px 24px;
+            }
+            
+            .button-text {
+                font-size: 16px;
             }
         }
 
-        @keyframes breathe-scale {
-            0%, 100% {
-                transform: translateX(-50%) scale(1);
-            }
-            50% {
-                transform: translateX(-50%) scale(1.05);
-            }
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-4px);
-            }
-            60% {
-                transform: translateY(-2px);
-            }
-        }
-
-        /* Tablet specific styles */
-        @media (max-width: 768px) and (min-width: 481px) {
-            .desktop-cta {
-                width: 350px;
-                height: 70px;
-            }
-            .desktop-cta .cta-text {
-                font-size: 18px;
-            }
-            .desktop-cta .cta-icon {
-                font-size: 22px;
-            }
-        }
-
-        /* Mobile responsive */
         @media (max-width: 480px) {
-            .desktop-layout,
-            .desktop-cta-layer {
-                display: none;
+            .cta-container {
+                bottom: 6%;
             }
             
-            .mobile-layout {
-                display: block;
+            .layer-4 {
+                padding: 14px 20px;
             }
             
-            body {
-                overflow-x: hidden;
-                overflow-y: auto;
-            }
-        }
-
-        /* Desktop and tablet - hide mobile layout */
-        @media (min-width: 481px) {
-            .mobile-layout {
-                display: none !important;
+            .button-text {
+                font-size: 14px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Desktop and Tablet Layout -->
-    <div class="desktop-layout">
-        <img src="https://page.gensparksite.com/v1/base64_upload/8f765d8125b627fb1d277897475a88c8" alt="HengOngBet Background" class="desktop-background">
-    </div>
-
-    <div class="desktop-cta-layer">
-        <a href="https://hengongbet7.com" target="_blank" class="premium-cta desktop-cta">
-            <div class="cta-content">
-                <i class="fas fa-gift cta-icon"></i>
-                <span class="cta-text">Claim Bonus Now</span>
-                <i class="fas fa-arrow-right cta-icon"></i>
-            </div>
-        </a>
-    </div>
-
-    <!-- Mobile Layout -->
-    <div class="mobile-layout">
-        <div class="mobile-background-container">
-            <img src="https://page.gensparksite.com/v1/base64_upload/8f765d8125b627fb1d277897475a88c8" alt="HengOngBet Background" class="mobile-background">
-            
-            <div class="mobile-cta-layer">
-                <a href="https://hengongbet7.com" target="_blank" class="premium-cta mobile-cta">
-                    <div class="cta-content">
-                        <i class="fas fa-gift cta-icon"></i>
-                        <span class="cta-text">Claim Bonus Now</span>
-                        <i class="fas fa-arrow-right cta-icon"></i>
+    <div class="background-container">
+        <img src="https://page.gensparksite.com/v1/base64_upload/17ea46483675f796ca933d9d7124d970" class="background-image" alt="YES2WIN Background">
+        <div class="cta-container">
+            <a href="https://yes2winofficial.com/" target="_blank" rel="noopener noreferrer" class="cta-link">
+                <button class="cta-button">
+                    <div class="layer-1">
+                        <div class="layer-2">
+                            <div class="layer-3">
+                                <div class="layer-4">
+                                    <span class="button-text">🎁 领取 RM10 🎁</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </a>
-            </div>
+                </button>
+            </a>
         </div>
     </div>
 </body>
