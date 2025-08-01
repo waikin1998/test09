@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HengOngBet Landing Page - 电话版CTA继续左移0.2cm</title>
+    <title>HengOngBet Landing Page - 修复电脑版CTA位置</title>
     
     <!-- Meta Pixel Code -->
     <script>
@@ -199,7 +199,7 @@
             }
         }
 
-        /* Responsive adjustments */
+        /* Responsive adjustments - 使用更精确的定位 */
         @media (max-width: 768px) {
             .premium-cta {
                 width: 350px;
@@ -219,14 +219,44 @@
             .premium-cta {
                 width: 300px;
                 height: 65px;
-                top: 32%;
-                left: 35.5%;
+                top: 32vh;
+                left: 35.5vw;
+                transform: translateX(-50%);
             }
             .cta-text {
                 font-size: 16px;
             }
             .cta-icon {
                 font-size: 20px;
+            }
+            
+            /* 确保在不同手机上位置更一致 */
+            .background-image {
+                object-fit: cover;
+                object-position: center;
+            }
+        }
+
+        /* 针对超小屏幕的额外优化 */
+        @media (max-width: 375px) {
+            .premium-cta {
+                width: 280px;
+                height: 60px;
+                left: 35vw;
+            }
+            .cta-text {
+                font-size: 15px;
+            }
+            .cta-icon {
+                font-size: 18px;
+            }
+        }
+
+        /* 针对较大手机屏幕的优化 */
+        @media (min-width: 481px) and (max-width: 768px) {
+            .premium-cta {
+                left: 15%;
+                top: 38%;
             }
         }
     </style>
