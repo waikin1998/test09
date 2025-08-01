@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HengOngBet Landing Page - CTA居中保持原尺寸</title>
+    <title>HengOngBet Landing Page - CTA移至底部</title>
     
     <!-- Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
@@ -24,10 +24,11 @@
             background-color: #000;
             min-height: 100vh;
             overflow-x: hidden;
+            position: relative;
         }
 
-        /* Desktop version - fixed background and CTA */
-        @media (min-width: 769px) {
+        /* Desktop and tablet: fixed background with overlay CTA */
+        @media (min-width: 481px) {
             .background-layer {
                 position: fixed;
                 top: 0;
@@ -63,36 +64,36 @@
 
             .premium-cta {
                 position: absolute;
-                top: 50%;
+                bottom: 8%;
                 left: 50%;
-                transform: translate(-50%, -50%);
-                width: 400px;
-                height: 80px;
+                transform: translateX(-50%);
+                cursor: pointer;
+                pointer-events: all;
             }
         }
 
-        /* Mobile version - scrollable background with CTA attached */
-        @media (max-width: 768px) {
+        /* Mobile: scrollable background with CTA positioned on image */
+        @media (max-width: 480px) {
             body {
                 overflow-y: auto;
             }
 
-            .background-layer {
+            .background-container {
                 position: relative;
                 width: 100%;
+                min-height: 100vh;
                 background-color: #000;
                 display: flex;
                 justify-content: center;
                 align-items: flex-start;
-                min-height: 150vh;
             }
 
             .background-image {
                 width: 100%;
                 height: auto;
-                min-height: 150vh;
+                min-height: 100vh;
                 object-fit: contain;
-                object-position: top center;
+                display: block;
             }
 
             .cta-layer {
@@ -103,37 +104,27 @@
                 height: 100%;
                 z-index: 10;
                 pointer-events: none;
-                display: flex;
-                justify-content: center;
-                align-items: center;
             }
 
             .premium-cta {
                 position: absolute;
-                top: 50%;
+                bottom: 8%;
                 left: 50%;
-                transform: translate(-50%, -50%);
-                width: 350px;
-                height: 70px;
+                transform: translateX(-50%);
+                cursor: pointer;
+                pointer-events: all;
             }
         }
 
-        @media (max-width: 480px) {
-            .premium-cta {
-                width: 300px;
-                height: 65px;
-            }
-        }
-
-        /* CTA Styling */
         .premium-cta {
-            cursor: pointer;
-            pointer-events: all;
+            width: 400px;
+            height: 80px;
             background: linear-gradient(135deg, #ff6b35 0%, #f7931e 25%, #ffd700 50%, #ffaa00 75%, #ff8c00 100%);
             border-radius: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
             overflow: hidden;
             box-shadow: 
                 0 8px 32px rgba(255, 107, 53, 0.4),
@@ -162,7 +153,7 @@
         }
 
         .premium-cta:hover {
-            transform: translate(-50%, -50%) translateY(-8px) scale(1.05);
+            transform: translateX(-50%) translateY(-8px) scale(1.05);
             box-shadow: 
                 0 16px 48px rgba(255, 107, 53, 0.6),
                 0 8px 24px rgba(247, 147, 30, 0.4),
@@ -200,24 +191,6 @@
             animation: bounce 2s ease-in-out infinite;
         }
 
-        @media (max-width: 768px) {
-            .cta-text {
-                font-size: 18px;
-            }
-            .cta-icon {
-                font-size: 22px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .cta-text {
-                font-size: 16px;
-            }
-            .cta-icon {
-                font-size: 20px;
-            }
-        }
-
         @keyframes pulse-glow {
             0%, 100% {
                 box-shadow: 
@@ -237,10 +210,10 @@
 
         @keyframes breathe-scale {
             0%, 100% {
-                transform: translate(-50%, -50%) scale(1);
+                transform: translateX(-50%) scale(1);
             }
             50% {
-                transform: translate(-50%, -50%) scale(1.05);
+                transform: translateX(-50%) scale(1.05);
             }
         }
 
@@ -255,14 +228,55 @@
                 transform: translateY(-2px);
             }
         }
+
+        /* Tablet adjustments */
+        @media (max-width: 768px) and (min-width: 481px) {
+            .premium-cta {
+                width: 350px;
+                height: 70px;
+            }
+            .cta-text {
+                font-size: 18px;
+            }
+            .cta-icon {
+                font-size: 22px;
+            }
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 480px) {
+            .premium-cta {
+                width: 300px;
+                height: 65px;
+            }
+            .cta-text {
+                font-size: 16px;
+            }
+            .cta-icon {
+                font-size: 20px;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Background Layer -->
+    <!-- Desktop and Tablet Layout -->
     <div class="background-layer">
         <img src="https://page.gensparksite.com/v1/base64_upload/8f765d8125b627fb1d277897475a88c8" alt="HengOngBet Background" class="background-image">
-        
-        <!-- CTA Layer -->
+    </div>
+
+    <div class="cta-layer">
+        <a href="https://hengongbet7.com" target="_blank" class="premium-cta">
+            <div class="cta-content">
+                <i class="fas fa-gift cta-icon"></i>
+                <span class="cta-text">Claim Bonus Now</span>
+                <i class="fas fa-arrow-right cta-icon"></i>
+            </div>
+        </a>
+    </div>
+
+    <!-- Mobile Layout -->
+    <div class="background-container">
+        <img src="https://page.gensparksite.com/v1/base64_upload/8f765d8125b627fb1d277897475a88c8" alt="HengOngBet Background" class="background-image">
         <div class="cta-layer">
             <a href="https://hengongbet7.com" target="_blank" class="premium-cta">
                 <div class="cta-content">
