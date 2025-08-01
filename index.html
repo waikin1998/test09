@@ -32,12 +32,6 @@
             animation: pulseScale 2.5s ease-in-out infinite;
         }
 
-        @keyframes pulseScale {
-            0% { transform: translateX(-50%) scale(1); }
-            50% { transform: translateX(-50%) scale(1.1); }
-            100% { transform: translateX(-50%) scale(1); }
-        }
-
         .cta-button {
             position: relative;
             padding: 0;
@@ -48,12 +42,6 @@
             font-family: inherit;
             outline: none;
             transition: all 0.3s ease;
-        }
-
-        .cta-button a {
-            text-decoration: none;
-            color: inherit;
-            display: block;
         }
 
         /* Layer 1 - 最外层金色边框 */
@@ -187,14 +175,20 @@
             100% { left: 100%; }
         }
 
+        @keyframes pulseScale {
+            0% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.1); }
+            100% { transform: translateX(-50%) scale(1); }
+        }
+
         /* 响应式设计 */
         @media (max-width: 768px) {
             .cta-container {
-                bottom: 231px;
+                bottom: 193px;
             }
             
             .layer-4 {
-                padding: 13px 19px;
+                padding: 14px 20px;
             }
             
             .button-text {
@@ -204,12 +198,18 @@
 
         @media (max-width: 480px) {
             .layer-4 {
-                padding: 11px 16px;
+                padding: 12px 18px;
             }
             
             .button-text {
                 font-size: 16px;
             }
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            display: inline-block;
         }
     </style>
 </head>
