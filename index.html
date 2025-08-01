@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HengOngBet Landing Page - 电话版CTA精准定位</title>
+    <title>HengOngBet Landing Page - 修复电脑版CTA位置</title>
     
     <!-- Meta Pixel Code -->
     <script>
@@ -216,12 +216,20 @@
         }
 
         @media (max-width: 480px) {
+            .cta-layer {
+                position: relative;
+                display: block;
+            }
+            
             .premium-cta {
+                position: absolute;
                 width: 300px;
                 height: 65px;
-                top: 32%;
+                top: 32vh;
                 left: 38.5%;
+                transform: translateX(-50%);
             }
+            
             .cta-text {
                 font-size: 16px;
             }
