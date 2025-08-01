@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HengOngBet Landing Page - 修复手机版CTA显示</title>
+    <title>HengOngBet Landing Page - 完美平衡所有版本</title>
     
     <!-- Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
@@ -27,8 +27,8 @@
             position: relative;
         }
 
-        /* Background Layer - z-index: 1 */
-        .background-layer {
+        /* Desktop and Tablet - Fixed Layout */
+        .desktop-layout {
             position: fixed;
             top: 0;
             left: 0;
@@ -41,15 +41,14 @@
             background-color: #000;
         }
 
-        .background-image {
+        .desktop-background {
             width: 100%;
             height: 100vh;
             object-fit: contain;
             max-width: 100%;
         }
 
-        /* CTA Layer - z-index: 10 */
-        .cta-layer {
+        .desktop-cta-layer {
             position: fixed;
             top: 0;
             left: 0;
@@ -62,20 +61,46 @@
             align-items: center;
         }
 
-        .premium-cta {
+        /* Mobile - Scrollable Layout */
+        .mobile-layout {
+            display: none;
+            position: relative;
+            min-height: 100vh;
+            background-color: #000;
+        }
+
+        .mobile-background-container {
+            position: relative;
+            width: 100%;
+            height: auto;
+        }
+
+        .mobile-background {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .mobile-cta-layer {
             position: absolute;
-            top: 85%;
-            left: 50%;
-            transform: translateX(-50%);
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        /* CTA Button Styles */
+        .premium-cta {
             cursor: pointer;
             pointer-events: all;
-            width: 400px;
-            height: 80px;
             background: linear-gradient(135deg, #ff6b35 0%, #f7931e 25%, #ffd700 50%, #ffaa00 75%, #ff8c00 100%);
             border-radius: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
             overflow: hidden;
             box-shadow: 
                 0 8px 32px rgba(255, 107, 53, 0.4),
@@ -104,7 +129,7 @@
         }
 
         .premium-cta:hover {
-            transform: translateX(-50%) translateY(-8px) scale(1.05);
+            transform: translateY(-8px) scale(1.05);
             box-shadow: 
                 0 16px 48px rgba(255, 107, 53, 0.6),
                 0 8px 24px rgba(247, 147, 30, 0.4),
@@ -124,7 +149,6 @@
         }
 
         .cta-text {
-            font-size: 20px;
             font-weight: 800;
             color: #fff;
             text-shadow: 
@@ -136,10 +160,45 @@
         }
 
         .cta-icon {
-            font-size: 24px;
             color: #fff;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
             animation: bounce 2s ease-in-out infinite;
+        }
+
+        /* Desktop CTA */
+        .desktop-cta {
+            position: absolute;
+            top: 85%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 400px;
+            height: 80px;
+        }
+
+        .desktop-cta .cta-text {
+            font-size: 20px;
+        }
+
+        .desktop-cta .cta-icon {
+            font-size: 24px;
+        }
+
+        /* Mobile CTA */
+        .mobile-cta {
+            position: absolute;
+            top: 78%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 65px;
+        }
+
+        .mobile-cta .cta-text {
+            font-size: 16px;
+        }
+
+        .mobile-cta .cta-icon {
+            font-size: 20px;
         }
 
         @keyframes pulse-glow {
@@ -180,83 +239,76 @@
             }
         }
 
-        /* Mobile version - scrollable background with CTA fixed to image */
-        @media (max-width: 768px) {
-            body {
-                overflow-y: auto;
-                height: auto;
-                min-height: 100vh;
-            }
-            
-            .background-layer {
-                position: relative;
-                height: auto;
-                min-height: 150vh;
-            }
-            
-            .background-image {
-                height: auto;
-                min-height: 150vh;
-                object-fit: contain;
-            }
-            
-            .cta-layer {
-                position: absolute;
-                height: 150vh;
-                min-height: 150vh;
-            }
-            
-            .premium-cta {
+        /* Tablet specific styles */
+        @media (max-width: 768px) and (min-width: 481px) {
+            .desktop-cta {
                 width: 350px;
                 height: 70px;
-                top: 78%;
-                left: 50%;
-                transform: translateX(-50%);
             }
-            
-            .cta-text {
+            .desktop-cta .cta-text {
                 font-size: 18px;
             }
-            
-            .cta-icon {
+            .desktop-cta .cta-icon {
                 font-size: 22px;
             }
         }
 
+        /* Mobile responsive */
         @media (max-width: 480px) {
-            .premium-cta {
-                width: 300px;
-                height: 65px;
-                top: 78%;
-                left: 50%;
-                transform: translateX(-50%);
+            .desktop-layout,
+            .desktop-cta-layer {
+                display: none;
             }
             
-            .cta-text {
-                font-size: 16px;
+            .mobile-layout {
+                display: block;
             }
             
-            .cta-icon {
-                font-size: 20px;
+            body {
+                overflow-x: hidden;
+                overflow-y: auto;
+            }
+        }
+
+        /* Desktop and tablet - hide mobile layout */
+        @media (min-width: 481px) {
+            .mobile-layout {
+                display: none !important;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Background Layer -->
-    <div class="background-layer">
-        <img src="https://page.gensparksite.com/v1/base64_upload/8f765d8125b627fb1d277897475a88c8" alt="HengOngBet Background" class="background-image">
+    <!-- Desktop and Tablet Layout -->
+    <div class="desktop-layout">
+        <img src="https://page.gensparksite.com/v1/base64_upload/8f765d8125b627fb1d277897475a88c8" alt="HengOngBet Background" class="desktop-background">
     </div>
 
-    <!-- CTA Layer -->
-    <div class="cta-layer">
-        <a href="https://hengongbet7.com" target="_blank" class="premium-cta">
+    <div class="desktop-cta-layer">
+        <a href="https://hengongbet7.com" target="_blank" class="premium-cta desktop-cta">
             <div class="cta-content">
                 <i class="fas fa-gift cta-icon"></i>
                 <span class="cta-text">Claim Bonus Now</span>
                 <i class="fas fa-arrow-right cta-icon"></i>
             </div>
         </a>
+    </div>
+
+    <!-- Mobile Layout -->
+    <div class="mobile-layout">
+        <div class="mobile-background-container">
+            <img src="https://page.gensparksite.com/v1/base64_upload/8f765d8125b627fb1d277897475a88c8" alt="HengOngBet Background" class="mobile-background">
+            
+            <div class="mobile-cta-layer">
+                <a href="https://hengongbet7.com" target="_blank" class="premium-cta mobile-cta">
+                    <div class="cta-content">
+                        <i class="fas fa-gift cta-icon"></i>
+                        <span class="cta-text">Claim Bonus Now</span>
+                        <i class="fas fa-arrow-right cta-icon"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
     </div>
 </body>
 </html>
