@@ -20,23 +20,14 @@
             background-repeat: no-repeat;
             background-color: #000;
             min-height: 100vh;
-            position: relative;
         }
 
         .cta-container {
             position: absolute;
-            bottom: 80px;
+            bottom: 156px;  /* 电脑版：原来80px + 2cm(75.6px) */
             left: 50%;
             transform: translateX(-50%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
             z-index: 1000;
-        }
-
-        .cta-link {
-            text-decoration: none;
-            color: inherit;
         }
 
         .cta-button {
@@ -49,6 +40,12 @@
             font-family: inherit;
             outline: none;
             transition: all 0.3s ease;
+        }
+
+        .cta-button a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
         }
 
         /* Layer 1 - 最外层金色边框 */
@@ -146,7 +143,7 @@
         .button-text {
             position: relative;
             z-index: 10;
-            font-size: 18px;
+            font-size: 20px;
             font-weight: bold;
             color: #fff;
             text-shadow: 
@@ -185,7 +182,7 @@
         /* 响应式设计 */
         @media (max-width: 768px) {
             .cta-container {
-                bottom: 60px;
+                bottom: 231px;  /* 手机版：原位置 + 4cm(151.2px) */
             }
             
             .layer-4 {
@@ -193,28 +190,24 @@
             }
             
             .button-text {
-                font-size: 16px;
+                font-size: 18px;
             }
         }
 
         @media (max-width: 480px) {
-            .cta-container {
-                bottom: 40px;
-            }
-            
             .layer-4 {
                 padding: 14px 20px;
             }
             
             .button-text {
-                font-size: 14px;
+                font-size: 16px;
             }
         }
     </style>
 </head>
 <body>
     <div class="cta-container">
-        <a href="https://yes2winofficial.com/" target="_blank" rel="noopener noreferrer" class="cta-link">
+        <a href="https://yes2winofficial.com/" target="_blank" rel="noopener noreferrer">
             <button class="cta-button">
                 <div class="layer-1">
                     <div class="layer-2">
