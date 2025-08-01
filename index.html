@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HengOngBet Landing Page - 严格保持电脑版CTA不变</title>
+    <title>HengOngBet Landing Page - 修复手机版CTA显示</title>
     
     <!-- Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
@@ -27,7 +27,7 @@
             position: relative;
         }
 
-        /* Desktop and Tablet - Fixed background and CTA */
+        /* Background Layer - z-index: 1 */
         .background-layer {
             position: fixed;
             top: 0;
@@ -48,6 +48,7 @@
             max-width: 100%;
         }
 
+        /* CTA Layer - z-index: 10 */
         .cta-layer {
             position: fixed;
             top: 0;
@@ -63,7 +64,7 @@
 
         .premium-cta {
             position: absolute;
-            bottom: 15%;
+            top: 85%;
             left: 50%;
             transform: translateX(-50%);
             cursor: pointer;
@@ -179,66 +180,62 @@
             }
         }
 
-        /* Tablet adjustments */
-        @media (max-width: 768px) and (min-width: 481px) {
-            .premium-cta {
-                width: 350px;
-                height: 70px;
-                bottom: 15%;
-            }
-            .cta-text {
-                font-size: 18px;
-            }
-            .cta-icon {
-                font-size: 22px;
-            }
-        }
-
-        /* Mobile - Scrollable layout with CTA fixed to background image */
-        @media (max-width: 480px) {
+        /* Mobile version - scrollable background with CTA fixed to image */
+        @media (max-width: 768px) {
             body {
                 overflow-y: auto;
                 height: auto;
                 min-height: 100vh;
             }
-
+            
             .background-layer {
                 position: relative;
                 height: auto;
                 min-height: 150vh;
             }
-
+            
             .background-image {
-                width: 100%;
                 height: auto;
                 min-height: 150vh;
                 object-fit: contain;
-                object-position: top center;
             }
-
+            
             .cta-layer {
                 position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                z-index: 10;
-                pointer-events: none;
+                height: 150vh;
+                min-height: 150vh;
             }
-
+            
             .premium-cta {
-                position: absolute;
-                bottom: 22%;
+                width: 350px;
+                height: 70px;
+                top: 78%;
                 left: 50%;
                 transform: translateX(-50%);
+            }
+            
+            .cta-text {
+                font-size: 18px;
+            }
+            
+            .cta-icon {
+                font-size: 22px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .premium-cta {
                 width: 300px;
                 height: 65px;
+                top: 78%;
+                left: 50%;
+                transform: translateX(-50%);
             }
-
+            
             .cta-text {
                 font-size: 16px;
             }
-
+            
             .cta-icon {
                 font-size: 20px;
             }
