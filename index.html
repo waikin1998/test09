@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HengOngBet Landing Page - 检查背景图效果</title>
+    <title>HengOngBet Landing Page - CTA固定在背景图</title>
     
     <!-- Meta Pixel Code -->
     <script>
@@ -41,11 +41,10 @@
             font-family: 'Poppins', sans-serif;
             background-color: #000;
             min-height: 100vh;
-            overflow-x: hidden;
             position: relative;
         }
 
-        /* Background Layer - z-index: 1 */
+        /* Desktop and Tablet - Fixed Layout */
         .background-layer {
             position: fixed;
             top: 0;
@@ -66,7 +65,6 @@
             max-width: 100%;
         }
 
-        /* CTA Layer - z-index: 10 */
         .cta-layer {
             position: fixed;
             top: 0;
@@ -199,8 +197,70 @@
             }
         }
 
-        /* Responsive adjustments - 保持背景图不放大 */
-        @media (max-width: 768px) {
+        /* Mobile Scrollable Layout */
+        @media (max-width: 480px) {
+            body {
+                overflow-x: hidden;
+                overflow-y: auto;
+            }
+
+            .background-layer {
+                position: relative;
+                height: auto;
+                min-height: 150vh;
+            }
+
+            .background-image {
+                width: 100%;
+                height: auto;
+                object-fit: contain;
+                display: block;
+            }
+
+            .cta-layer {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 10;
+                pointer-events: none;
+            }
+
+            .premium-cta {
+                position: absolute;
+                top: 32%;
+                left: 35.5%;
+                transform: translateX(-50%);
+                width: 300px;
+                height: 65px;
+                animation: pulse-glow 2s ease-in-out infinite;
+            }
+
+            .premium-cta:hover {
+                transform: translateX(-50%) translateY(-8px) scale(1.05);
+            }
+
+            .cta-text {
+                font-size: 16px;
+            }
+
+            .cta-icon {
+                font-size: 20px;
+            }
+
+            @keyframes breathe-scale {
+                0%, 100% {
+                    transform: translateX(-50%) scale(1);
+                }
+                50% {
+                    transform: translateX(-50%) scale(1.05);
+                }
+            }
+        }
+
+        /* Tablet adjustments */
+        @media (max-width: 768px) and (min-width: 481px) {
             .premium-cta {
                 width: 350px;
                 height: 70px;
@@ -214,68 +274,23 @@
                 font-size: 22px;
             }
         }
-
-        @media (max-width: 480px) {
-            .premium-cta {
-                width: 300px;
-                height: 65px;
-                top: 32vh;
-                left: 35.5vw;
-                transform: translateX(-50%);
-            }
-            .cta-text {
-                font-size: 16px;
-            }
-            .cta-icon {
-                font-size: 20px;
-            }
-            
-            /* 保持背景图完整显示，不放大裁切 */
-            .background-image {
-                object-fit: contain;
-                object-position: center;
-            }
-        }
-
-        /* 针对超小屏幕的额外优化 */
-        @media (max-width: 375px) {
-            .premium-cta {
-                width: 280px;
-                height: 60px;
-                left: 35vw;
-            }
-            .cta-text {
-                font-size: 15px;
-            }
-            .cta-icon {
-                font-size: 18px;
-            }
-        }
-
-        /* 针对较大手机屏幕的优化 */
-        @media (min-width: 481px) and (max-width: 768px) {
-            .premium-cta {
-                left: 15%;
-                top: 38%;
-            }
-        }
     </style>
 </head>
 <body>
     <!-- Background Layer -->
     <div class="background-layer">
         <img src="https://page.gensparksite.com/v1/base64_upload/8f765d8125b627fb1d277897475a88c8" alt="HengOngBet Background" class="background-image">
-    </div>
-
-    <!-- CTA Layer -->
-    <div class="cta-layer">
-        <a href="https://hengongbet7.com" target="_blank" class="premium-cta">
-            <div class="cta-content">
-                <i class="fas fa-gift cta-icon"></i>
-                <span class="cta-text">Claim Bonus Now</span>
-                <i class="fas fa-arrow-right cta-icon"></i>
-            </div>
-        </a>
+        
+        <!-- CTA Layer - Inside background for mobile -->
+        <div class="cta-layer">
+            <a href="https://hengongbet7.com" target="_blank" class="premium-cta">
+                <div class="cta-content">
+                    <i class="fas fa-gift cta-icon"></i>
+                    <span class="cta-text">Claim Bonus Now</span>
+                    <i class="fas fa-arrow-right cta-icon"></i>
+                </div>
+            </a>
+        </div>
     </div>
 </body>
 </html>
