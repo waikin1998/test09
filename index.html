@@ -13,21 +13,29 @@
 
         body, html {
             width: 100vw;
+            min-height: 100vh;
             font-family: 'Arial', sans-serif;
             background-image: url('https://page.gensparksite.com/v1/base64_upload/17ea46483675f796ca933d9d7124d970');
             background-size: contain;
             background-position: center;
             background-repeat: no-repeat;
             background-color: #000;
-            min-height: 100vh;
+            position: relative;
         }
 
         .cta-container {
             position: absolute;
-            bottom: 156px;  /* 电脑版：原来80px + 2cm(75.6px) */
+            bottom: 156px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 1000;
+            animation: pulseScale 2.5s ease-in-out infinite;
+        }
+
+        @keyframes pulseScale {
+            0% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.1); }
+            100% { transform: translateX(-50%) scale(1); }
         }
 
         .cta-button {
@@ -50,7 +58,7 @@
 
         /* Layer 1 - 最外层金色边框 */
         .layer-1 {
-            padding: 4px;
+            padding: 3px;
             background: linear-gradient(45deg, #FFD700, #FFA500, #FFD700);
             border-radius: 16px;
             box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
@@ -71,7 +79,7 @@
 
         /* Layer 2 - 深色边框 */
         .layer-2 {
-            padding: 6px;
+            padding: 5px;
             background: linear-gradient(145deg, #2c2c2c, #1a1a1a);
             border-radius: 12px;
             box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
@@ -79,7 +87,7 @@
 
         /* Layer 3 - 金色金属边框 */
         .layer-3 {
-            padding: 3px;
+            padding: 2px;
             background: linear-gradient(145deg, #FFD700, #B8860B, #FFD700);
             border-radius: 8px;
             box-shadow: 
@@ -102,7 +110,7 @@
 
         /* Layer 4 - 金色渐变背景 */
         .layer-4 {
-            padding: 20px 30px;
+            padding: 16px 24px;
             background: linear-gradient(145deg, #FFD700, #FFA500, #FF8C00, #B8860B);
             border-radius: 6px;
             box-shadow: 
@@ -182,11 +190,11 @@
         /* 响应式设计 */
         @media (max-width: 768px) {
             .cta-container {
-                bottom: 231px;  /* 手机版：原位置 + 4cm(151.2px) */
+                bottom: 231px;
             }
             
             .layer-4 {
-                padding: 16px 24px;
+                padding: 13px 19px;
             }
             
             .button-text {
@@ -196,7 +204,7 @@
 
         @media (max-width: 480px) {
             .layer-4 {
-                padding: 14px 20px;
+                padding: 11px 16px;
             }
             
             .button-text {
