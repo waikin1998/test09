@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HengOngBet Landing Page - 修复电脑版CTA显示</title>
+    <title>HengOngBet Landing Page - 严格保持电脑版CTA不变</title>
     
     <!-- Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
@@ -27,7 +27,7 @@
             position: relative;
         }
 
-        /* Desktop and tablet - fixed background */
+        /* Desktop and Tablet - Fixed background and CTA */
         .background-layer {
             position: fixed;
             top: 0;
@@ -48,7 +48,6 @@
             max-width: 100%;
         }
 
-        /* CTA Layer */
         .cta-layer {
             position: fixed;
             top: 0;
@@ -64,9 +63,9 @@
 
         .premium-cta {
             position: absolute;
-            top: 85%;
+            bottom: 15%;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translateX(-50%);
             cursor: pointer;
             pointer-events: all;
             width: 400px;
@@ -104,7 +103,7 @@
         }
 
         .premium-cta:hover {
-            transform: translate(-50%, -50%) translateY(-8px) scale(1.05);
+            transform: translateX(-50%) translateY(-8px) scale(1.05);
             box-shadow: 
                 0 16px 48px rgba(255, 107, 53, 0.6),
                 0 8px 24px rgba(247, 147, 30, 0.4),
@@ -161,10 +160,10 @@
 
         @keyframes breathe-scale {
             0%, 100% {
-                transform: translate(-50%, -50%) scale(1);
+                transform: translateX(-50%) scale(1);
             }
             50% {
-                transform: translate(-50%, -50%) scale(1.05);
+                transform: translateX(-50%) scale(1.05);
             }
         }
 
@@ -181,11 +180,11 @@
         }
 
         /* Tablet adjustments */
-        @media (max-width: 768px) {
+        @media (max-width: 768px) and (min-width: 481px) {
             .premium-cta {
                 width: 350px;
                 height: 70px;
-                top: 85%;
+                bottom: 15%;
             }
             .cta-text {
                 font-size: 18px;
@@ -195,43 +194,51 @@
             }
         }
 
-        /* Mobile adjustments - scrollable background with CTA positioned on image */
+        /* Mobile - Scrollable layout with CTA fixed to background image */
         @media (max-width: 480px) {
             body {
                 overflow-y: auto;
+                height: auto;
+                min-height: 100vh;
             }
-            
+
             .background-layer {
-                position: absolute;
+                position: relative;
                 height: auto;
-                min-height: 100vh;
+                min-height: 150vh;
             }
-            
+
             .background-image {
-                height: auto;
-                min-height: 100vh;
-                object-fit: contain;
                 width: 100%;
+                height: auto;
+                min-height: 150vh;
+                object-fit: contain;
+                object-position: top center;
             }
-            
+
             .cta-layer {
                 position: absolute;
-                height: auto;
-                min-height: 100vh;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 10;
+                pointer-events: none;
             }
-            
+
             .premium-cta {
+                position: absolute;
+                bottom: 22%;
+                left: 50%;
+                transform: translateX(-50%);
                 width: 300px;
                 height: 65px;
-                top: 70%; /* Moved up 3cm from original 85% */
-                left: 50%;
-                transform: translate(-50%, -50%);
             }
-            
+
             .cta-text {
                 font-size: 16px;
             }
-            
+
             .cta-icon {
                 font-size: 20px;
             }
