@@ -1,153 +1,241 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YES2WIN - Get RM10 Now</title>
+    <title>HengOngBet Landing Page - WhatsApp Contact</title>
+    
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '5070517493173803');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=5070517493173803&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+    
+    <!-- Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
-        
-        body {
-            font-family: 'Poppins', sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow-x: hidden;
-            background-image: url('https://page.gensparksite.com/v1/base64_upload/108f760e3d2b234165bf25cd5ce3ce61');
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-color: #1a1a2e;
+            box-sizing: border-box;
         }
 
-        .background-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.1);
-            z-index: -1;
-        }
-
-        .background-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255, 140, 0, 0.05) 0%, transparent 50%);
-            animation: glow 3s ease-in-out infinite alternate;
-        }
-
-        @keyframes glow {
-            0% { opacity: 0.3; }
-            100% { opacity: 0.6; }
-        }
-
-        @keyframes breathe {
-            0%, 100% { transform: perspective(1000px) rotateX(2deg) scale(1); }
-            50% { transform: perspective(1000px) rotateX(2deg) scale(1.05); }
-        }
-
-        .cta-container {
-            position: relative;
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .cta-button {
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 11px 36px;
-            background: linear-gradient(135deg, #FFE135 0%, #FFA500 50%, #FF8C00 100%);
-            border: none;
-            border-radius: 9px;
+        body {
             font-family: 'Poppins', sans-serif;
-            font-size: 15px;
-            font-weight: 800;
-            color: white;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            min-width: 192px;
-            height: 42px;
-            
-            /* Multi-layer borders */
-            box-shadow: 
-                0 0 0 2px #2a2a2a,
-                0 0 0 4px #FFD700,
-                0 5px 12px rgba(0, 0, 0, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.3),
-                inset 0 -1px 0 rgba(0, 0, 0, 0.2);
-            
-            /* 3D effect with breathing animation */
-            animation: breathe 3s ease-in-out infinite;
+            background-color: #000;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
         }
 
-        .cta-button::before {
+        /* Desktop and Tablet - Fixed Layout */
+        @media (min-width: 769px) {
+            .background-layer {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                z-index: 1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: #000;
+            }
+
+            .background-image {
+                width: 100%;
+                height: 100vh;
+                object-fit: contain;
+                max-width: 100%;
+            }
+
+            .cta-layer {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                z-index: 10;
+                pointer-events: none;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .premium-cta {
+                position: absolute;
+                bottom: 8%;
+                left: 50%;
+                transform: translateX(-50%);
+                pointer-events: all;
+            }
+        }
+
+        /* Mobile - Scrollable Layout */
+        @media (max-width: 768px) {
+            body {
+                overflow-y: auto;
+            }
+
+            .background-layer {
+                position: relative;
+                width: 100%;
+                min-height: 100vh;
+                z-index: 1;
+                display: flex;
+                justify-content: center;
+                align-items: flex-start;
+                background-color: #000;
+            }
+
+            .background-image {
+                width: 100%;
+                height: auto;
+                min-height: 100vh;
+                object-fit: contain;
+                display: block;
+            }
+
+            .cta-layer {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 10;
+                pointer-events: none;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .premium-cta {
+                position: absolute;
+                bottom: 15%;
+                left: 50%;
+                transform: translateX(-50%);
+                pointer-events: all;
+            }
+        }
+
+        /* CTA Button Styling */
+        .premium-cta {
+            cursor: pointer;
+            width: 400px;
+            height: 80px;
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 25%, #ffd700 50%, #ffaa00 75%, #ff8c00 100%);
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 
+                0 8px 32px rgba(255, 107, 53, 0.4),
+                0 4px 16px rgba(247, 147, 30, 0.3),
+                inset 0 2px 4px rgba(255, 255, 255, 0.3),
+                inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+            border: 3px solid #ffd700;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: pulse-glow 2s ease-in-out infinite, breathe-scale 3s ease-in-out infinite;
+            text-decoration: none !important;
+        }
+
+        .premium-cta::before {
             content: '';
             position: absolute;
             top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 50%, rgba(0, 0, 0, 0.1) 100%);
-            border-radius: 9px;
-            pointer-events: none;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s;
         }
 
-        .cta-button:hover {
-            animation: breathe 3s ease-in-out infinite;
-            transform: perspective(1000px) rotateX(2deg) translateY(-1px) scale(1.02);
+        .premium-cta:hover::before {
+            left: 100%;
+        }
+
+        .premium-cta:hover {
+            transform: translateX(-50%) translateY(-8px) scale(1.05);
             box-shadow: 
-                0 0 0 2px #2a2a2a,
-                0 0 0 4px #FFD700,
-                0 0 12px rgba(255, 215, 0, 0.6),
-                0 7px 15px rgba(0, 0, 0, 0.5),
-                inset 0 1px 0 rgba(255, 255, 255, 0.4),
-                inset 0 -1px 0 rgba(0, 0, 0, 0.2);
-            
-            background: linear-gradient(135deg, #FFED4E 0%, #FFB500 50%, #FF9500 100%);
+                0 16px 48px rgba(255, 107, 53, 0.6),
+                0 8px 24px rgba(247, 147, 30, 0.4),
+                inset 0 2px 6px rgba(255, 255, 255, 0.4),
+                inset 0 -2px 6px rgba(0, 0, 0, 0.3);
+            border-color: #fff;
+            text-decoration: none !important;
         }
 
-        .cta-button:active {
-            animation: breathe 3s ease-in-out infinite;
-            transform: perspective(1000px) rotateX(2deg) translateY(1px) scale(0.98);
-            box-shadow: 
-                0 0 0 2px #2a2a2a,
-                0 0 0 4px #FFD700,
-                0 2px 8px rgba(0, 0, 0, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2),
-                inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+        .cta-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            z-index: 2;
+            position: relative;
         }
 
-        .gift-icon {
-            font-size: 17px;
-            margin: 0 7px;
-            animation: bounce 2s infinite;
-            filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.3));
+        .cta-text {
+            font-size: 20px;
+            font-weight: 800;
+            color: #fff;
+            text-shadow: 
+                2px 2px 4px rgba(0, 0, 0, 0.8),
+                0 0 8px rgba(255, 255, 255, 0.3);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            text-decoration: none !important;
         }
 
-        .gift-icon:first-child {
-            animation-delay: 0s;
+        .cta-icon {
+            font-size: 24px;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            animation: bounce 2s ease-in-out infinite;
         }
 
-        .gift-icon:last-child {
-            animation-delay: 0.5s;
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 
+                    0 8px 32px rgba(255, 107, 53, 0.4),
+                    0 4px 16px rgba(247, 147, 30, 0.3),
+                    inset 0 2px 4px rgba(255, 255, 255, 0.3),
+                    inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+            }
+            50% {
+                box-shadow: 
+                    0 12px 40px rgba(255, 107, 53, 0.6),
+                    0 6px 20px rgba(247, 147, 30, 0.4),
+                    inset 0 2px 4px rgba(255, 255, 255, 0.4),
+                    inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+            }
+        }
+
+        @keyframes breathe-scale {
+            0%, 100% {
+                transform: translateX(-50%) scale(1);
+            }
+            50% {
+                transform: translateX(-50%) scale(1.05);
+            }
         }
 
         @keyframes bounce {
@@ -155,90 +243,81 @@
                 transform: translateY(0);
             }
             40% {
-                transform: translateY(-5px);
+                transform: translateY(-4px);
             }
             60% {
                 transform: translateY(-2px);
             }
         }
 
-        .button-text {
-            font-weight: 800;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            white-space: nowrap;
-        }
-
-        /* Mobile responsiveness */
+        /* Mobile Responsive */
         @media (max-width: 768px) {
-            .cta-button {
-                min-width: 168px;
-                height: 36px;
-                font-size: 12px;
-                padding: 9px 24px;
+            .premium-cta {
+                width: 350px;
+                height: 70px;
             }
-            
-            .gift-icon {
-                font-size: 14px;
-                margin: 0 5px;
+            .cta-text {
+                font-size: 18px;
+            }
+            .cta-icon {
+                font-size: 22px;
             }
         }
 
         @media (max-width: 480px) {
-            .cta-button {
-                min-width: 150px;
-                height: 33px;
-                font-size: 11px;
-                padding: 7px 18px;
+            .premium-cta {
+                width: 300px;
+                height: 65px;
             }
-            
-            .gift-icon {
-                font-size: 12px;
-                margin: 0 4px;
+            .cta-text {
+                font-size: 16px;
+            }
+            .cta-icon {
+                font-size: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="background-container"></div>
-    
-    <div class="cta-container">
-        <a href="https://yes2winofficial.com/" target="_blank" class="cta-button" onclick="handleCTAClick(event)">
-            <span class="gift-icon">🎁</span>
-            <span class="button-text">Get RM10 Now</span>
-            <span class="gift-icon">🎁</span>
+    <!-- Background Layer -->
+    <div class="background-layer">
+        <img src="https://page.gensparksite.com/v1/base64_upload/8f765d8125b627fb1d277897475a88c8" alt="HengOngBet Background" class="background-image">
+    </div>
+
+    <!-- CTA Layer -->
+    <div class="cta-layer">
+        <a href="https://wa.me/message/4C7EZXHK3FMPC1" target="_blank" class="premium-cta" onclick="trackContactEvent()">
+            <div class="cta-content">
+                <i class="fab fa-whatsapp cta-icon"></i>
+                <span class="cta-text">Contact Us Now</span>
+                <i class="fas fa-arrow-right cta-icon"></i>
+            </div>
         </a>
     </div>
 
     <script>
-        function handleCTAClick(event) {
-            // Add click handling logic here
-            console.log('CTA button clicked - Redirecting to YES2WIN Official!');
-            
-            // Optional: Add some visual feedback before redirect
-            const button = event.currentTarget;
-            button.style.transform = 'perspective(1000px) rotateX(2deg) translateY(1px) scale(0.98)';
-            
-            setTimeout(() => {
-                button.style.transform = 'perspective(1000px) rotateX(2deg) translateY(-1px) scale(1.02)';
-            }, 150);
-            
-            // The link will naturally redirect due to href attribute
+        // Track Contact event when CTA is clicked
+        function trackContactEvent() {
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'Contact', {
+                    content_name: 'Contact Us Now',
+                    content_category: 'WhatsApp CTA Button',
+                    timestamp: new Date().toISOString()
+                });
+                console.log('FB Pixel Contact event triggered');
+            } else {
+                console.log('FB Pixel not loaded');
+            }
         }
 
-        // Add some interactive sparkle effects
-        document.addEventListener('DOMContentLoaded', function() {
-            const button = document.querySelector('.cta-button');
-            
-            button.addEventListener('mouseenter', function() {
-                // Add sparkle effect on hover
-                this.style.animationPlayState = 'running';
-            });
-            
-            button.addEventListener('mouseleave', function() {
-                // Ensure animation continues
-                this.style.animationPlayState = 'running';
-            });
+        // Ensure PageView is tracked after page load
+        window.addEventListener('load', function() {
+            if (typeof fbq !== 'undefined') {
+                console.log('FB Pixel loaded successfully');
+                console.log('FB Pixel PageView tracked');
+            } else {
+                console.log('FB Pixel failed to load');
+            }
         });
     </script>
 </body>
